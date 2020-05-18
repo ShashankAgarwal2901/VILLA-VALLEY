@@ -1,0 +1,24 @@
+.b {
+	border: 1px solid black;
+}
+.placeholder {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100%;
+	height: 300px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.landingContent {
+	width: 70%;
+	display: inline-block;
+	border: 1px solid black;
+	color: white;
+}
+
+.Button {
+	margin: 10px 10px;
+}

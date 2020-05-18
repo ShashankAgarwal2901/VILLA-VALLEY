@@ -1,0 +1,33 @@
+{
+  "name": "villa-valley",
+  "version": "1.0.0",
+  "description": "Website for Villa Valley , Yelahanka",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShashankAgarwal2901/VILLA-VALLEY.git"
+  },
+  "keywords": [
+    "VILLA",
+    "VALLEY",
+    "WEBSITE"
+  ],
+  "author": "Shashank Agarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShashankAgarwal2901/VILLA-VALLEY/issues"
+  },
+  "homepage": "https://github.com/ShashankAgarwal2901/VILLA-VALLEY#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
