@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import classes from "./Placeholder.module.css";
+import { connect } from "react-redux";
 
 class Placeholder extends Component {
 	render() {
@@ -12,22 +13,30 @@ class Placeholder extends Component {
 							This is a information page for general viewing , as
 							well as a Members area to share info
 						</p>
-						<a
-							className={
-								"waves-effect waves-light btn light-blue darken-3 " +
-								classes.Button
-							}
-						>
-							button
-						</a>
-						<a
-							className={
-								"waves-effect waves-light btn light-blue darken-3 " +
-								classes.Button
-							}
-						>
-							button
-						</a>
+						<div className="row">
+							<div className="col s6 l3 offset-l3">
+								<a
+									href="#Notices"
+									className={
+										"waves-effect waves-light btn-large " +
+										classes.Button
+									}
+								>
+									Notices
+								</a>
+							</div>
+							<div className="col s6 l3">
+								<a
+									onClick={() => {}}
+									className={
+										"waves-effect waves-light btn-large " +
+										classes.Button
+									}
+								>
+									Members
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -35,4 +44,8 @@ class Placeholder extends Component {
 	}
 }
 
-export default Placeholder;
+function mapStateToProps({ auth }) {
+	return { auth };
+}
+
+export default connect(mapStateToProps)(Placeholder);

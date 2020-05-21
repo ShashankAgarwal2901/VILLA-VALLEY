@@ -3,9 +3,9 @@ import classes from "./Card.module.css";
 
 const Card = () => {
 	return (
-		<div class="card">
-			<div class="card-content">
-				<span class="card-title">
+		<div className="card">
+			<div className="card-content">
+				<span className="card-title">
 					<i className={"material-icons md-48 " + classes.material}>
 						location_on
 					</i>

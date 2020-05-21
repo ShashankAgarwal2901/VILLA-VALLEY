@@ -1,0 +1,15 @@
+.drawer-enter {
+	transform: translateX(-50vh);
+}
+.drawer-enter-active {
+	transform: translateX(0);
+	transition: transform 300ms;
+}
+.drawer-exit {
+	opacity: 1;
+}
+.drawer-exit-active {
+	opacity: 0;
+	transform: translateX(-50vh);
+	transition: opacity 300ms, transform 300ms;
+}

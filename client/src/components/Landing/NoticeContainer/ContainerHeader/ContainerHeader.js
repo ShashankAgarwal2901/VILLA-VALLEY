@@ -6,6 +6,7 @@ const ContainerHeader = (props) => {
 		<div className="row">
 			<div className="col l3 m3 s6">
 				<a
+					name="Notices"
 					href="#"
 					onClick={(e) => {
 						e.persist();

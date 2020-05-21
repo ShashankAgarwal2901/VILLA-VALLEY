@@ -1,16 +1,17 @@
 .Button {
+	color: rgb(51, 54, 66);
 	margin: 0px 10px;
 	font-size: 20px;
-	border: 1px solid rgb(3, 155, 229);
+	border: 1px solid rgb(51, 54, 66);
 	padding: 8px;
 	border-radius: 10px;
 	transition: border 0.1s;
 }
 
 .Button:hover {
-	border: 2px solid rgb(3, 155, 229);
+	border: 2px solid rgb(51, 54, 66);
 }
 
 .active {
-	border: 2px solid rgb(3, 155, 229);
+	border: 2px solid rgb(51, 54, 66);
 }

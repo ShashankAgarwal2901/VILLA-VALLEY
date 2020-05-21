@@ -1,5 +1,4 @@
 .b {
-	border: 1px solid black;
 }
 .placeholder {
 	background-color: rgba(0, 0, 0, 0.5);
@@ -15,10 +14,10 @@
 .landingContent {
 	width: 70%;
 	display: inline-block;
-	border: 1px solid black;
 	color: white;
 }
 
 .Button {
 	margin: 10px 10px;
+	background-color: rgb(51, 54, 66);
 }
