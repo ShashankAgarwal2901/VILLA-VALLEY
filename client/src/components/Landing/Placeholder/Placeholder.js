@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import classes from "./Placeholder.module.css";
-import { connect } from "react-redux";
 
 class Placeholder extends Component {
 	render() {
@@ -27,7 +26,7 @@ class Placeholder extends Component {
 							</div>
 							<div className="col s6 l3">
 								<a
-									onClick={() => {}}
+									href="/members"
 									className={
 										"waves-effect waves-light btn-large " +
 										classes.Button
@@ -44,8 +43,4 @@ class Placeholder extends Component {
 	}
 }
 
-function mapStateToProps({ auth }) {
-	return { auth };
-}
-
-export default connect(mapStateToProps)(Placeholder);
+export default Placeholder;
