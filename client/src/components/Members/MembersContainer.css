@@ -1,0 +1,7 @@
+.MembersDrawerParent {
+	width: 70%;
+	height: 100%;
+	position: fixed;
+	z-index: 100;
+	background-color: rgb(51, 54, 66);
+}

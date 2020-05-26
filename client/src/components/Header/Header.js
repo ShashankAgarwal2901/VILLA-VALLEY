@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Drawer from "./Drawer/Drawer.js";
 import "./Header.css";
 
@@ -7,12 +8,36 @@ class Header extends Component {
 	state = {
 		showDrawer: false,
 	};
+	renderHeaderContent = () => {
+		if (this.props.auth)
+			return [
+				<li key="Log out header">
+					<a
+						className={"collection-item  transparent logOut"}
+						href="/api/logout"
+					>
+						Log Out
+					</a>
+				</li>,
+			];
+		else {
+			return [
+				<li key="Log in header">
+					<a
+						className={"collection-item  transparent logOut"}
+						href="/auth/google"
+					>
+						Log in
+					</a>
+				</li>,
+			];
+		}
+	};
 
 	switchDrawer = (e, a) => {
 		e.preventDefault();
 		const newState = a;
 		this.setState({ showDrawer: newState });
-		console.log(this.state.showDrawer);
 	};
 	render() {
 		return (
@@ -21,8 +46,8 @@ class Header extends Component {
 					show={this.state.showDrawer}
 					showFunction={this.switchDrawer}
 				/>
-				<nav className="blue-text">
-					<div className="nav-wrapper white b">
+				<nav className="white-text">
+					<div className="nav-wrapper navColor">
 						<a
 							href="#"
 							onClick={(e) => {
@@ -30,13 +55,16 @@ class Header extends Component {
 								this.switchDrawer(e, true);
 							}}
 						>
-							<span class="material-icons black-text">
+							<span className="material-icons drawerIcon">
 								reorder
 							</span>{" "}
 						</a>
-						<Link to={"/"} className="brand-logo blue-text center">
+						<Link to={"/"} className="brand-logo center">
 							Villa Valley
 						</Link>
+						<div className="listItem">
+							<ul>{this.renderHeaderContent()}</ul>
+						</div>
 					</div>
 				</nav>
 			</div>
@@ -44,4 +72,8 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+function mapStateToProps({ auth }) {
+	return { auth };
+}
+
+export default connect(mapStateToProps)(Header);

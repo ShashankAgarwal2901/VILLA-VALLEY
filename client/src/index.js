@@ -1,9 +1,10 @@
 import "materialize-css/dist/css/materialize.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App.js";
+
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
+import App from "./components/App.js";
 import reducers from "./reducers";
 import reduxThunk from "redux-thunk";
 

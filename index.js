@@ -4,6 +4,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 require("./models/pendingUser.js");
 require("./models/user.js");
+require("./models/superAdmin.js");
 require("./services/passport.js");
 const mongoose = require("mongoose");
 const keys = require("./config/keys.js");
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes.js")(app);
+require("./routes/membersRoutes.js")(app);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));

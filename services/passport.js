@@ -5,13 +5,24 @@ const mongoose = require("mongoose");
 
 const Pending = mongoose.model("pendingUsers");
 const users = mongoose.model("Users");
+const superAdmin = mongoose.model("superAdmin");
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-	users.findById(id).then((user) => done(null, user));
+	superAdmin.findById(id).then((user) => {
+		if (user) {
+			done(null, user);
+		}
+	});
+
+	users.findById(id).then((user) => {
+		if (user) {
+			done(null, user);
+		}
+	});
 });
 
 passport.use(
@@ -23,6 +34,14 @@ passport.use(
 			proxy: true,
 		},
 		async (accessToken, refreshToken, profile, done) => {
+			const existingAdmin = await superAdmin.findOne({
+				googleID: profile.id,
+				admin: keys.checkingToken,
+			});
+			if (existingAdmin) {
+				return done(null, existingAdmin);
+			}
+
 			const existingUser = await users.findOne({
 				googleID: profile.id,
 			});
@@ -35,7 +54,6 @@ passport.use(
 			});
 
 			if (awaitingUser) {
-				console.log("AWAITING USER");
 				return done(null, false, {
 					message:
 						"Authorization of your account is pending from admin.",
@@ -47,7 +65,7 @@ passport.use(
 				name: profile.displayName,
 				email: profile.emails[0].value,
 			}).save();
-			console.log("NEW pendinguser --------------------------", pending);
+
 			return done(null, false, {
 				message: "You account has been sent to admin for Authorization",
 			});

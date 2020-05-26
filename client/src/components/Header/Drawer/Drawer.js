@@ -10,41 +10,73 @@ class Drawer extends React.Component {
 			case null:
 				return;
 			case false:
-				return (
-					<div class={"collection " + classes.Collection}>
-						<li>
-							<a
-								href="/auth/google"
-								class={
-									classes.Google +
-									" " +
-									"collection-item  transparent"
-								}
-							>
-								<h5>Log in with Google</h5>
-							</a>
-						</li>
-						<li>
-							<a href="#!" class="collection-item transparent">
-								<h6>Sample</h6>
-							</a>
-						</li>
-						<li>
-							<a href="#!" class="collection-item  transparent">
-								<h6>Sample</h6>
-							</a>
-						</li>
-						<li>
-							<a href="#!" class="collection-item  transparent">
-								<h6>Sample</h6>
-							</a>
-						</li>
-					</div>
-				);
+				return [
+					<li key="1">
+						<a
+							href="/auth/google"
+							className={
+								classes.Google +
+								" " +
+								"collection-item  transparent "
+							}
+						>
+							<h5>Log in with Google</h5>
+						</a>
+					</li>,
+					<li key="2">
+						<a href="#" className="collection-item transparent">
+							<h6>Sample</h6>
+						</a>
+					</li>,
+					<li key="3">
+						<a href="#" className="collection-item  transparent">
+							<h6>Sample</h6>
+						</a>
+					</li>,
+					<li key="4">
+						<a href="#" className="collection-item  transparent">
+							<h6>Sample</h6>
+						</a>
+					</li>,
+				];
+
 			default:
 				return [
+					<li key="1" style={{ padding: "0 5px" }}>
+						<a
+							className={
+								classes.Google +
+								" " +
+								"collection-item  transparent"
+							}
+							href="/api/logout"
+						>
+							Log Out
+						</a>
+					</li>,
+					<li key="2" style={{ padding: "0 5px" }}>
+						<a
+							className={
+								classes.Google +
+								" " +
+								"collection-item  transparent"
+							}
+							href="#"
+						>
+							Sample
+						</a>
+					</li>,
 					<li key="3" style={{ padding: "0 5px" }}>
-						<a href="/api/logout">Log Out</a>
+						<a
+							className={
+								classes.Google +
+								" " +
+								"collection-item  transparent"
+							}
+							href="#"
+						>
+							sample
+						</a>
 					</li>,
 				];
 		}
@@ -69,9 +101,15 @@ class Drawer extends React.Component {
 						<div className="row">
 							<h3 className="white-text">Logo</h3>
 							<div className={classes.a}>
-								<ul className="col s12">
-									{this.renderContent()}
-								</ul>
+								<div
+									className={
+										"collection " + classes.Collection
+									}
+								>
+									<ul className="col s12">
+										{this.renderContent()}
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>

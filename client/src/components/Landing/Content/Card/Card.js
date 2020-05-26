@@ -1,20 +1,10 @@
-import React, { Component } from "react";
-import classes from "./Card.module.css";
+import React from "react";
 
-const Card = () => {
+const Card = (props) => {
 	return (
 		<div className="card">
-			<div className="card-content">
-				<span className="card-title">
-					<i className={"material-icons md-48 " + classes.material}>
-						location_on
-					</i>
-				</span>
-				<p>
-					I am a very simple card. I am good at containing small bits
-					of information. I am convenient because I require little
-					markup to use effectively.
-				</p>
+			<div className="card-image">
+				<img src={props.image} alt="Card image" />
 			</div>
 		</div>
 	);

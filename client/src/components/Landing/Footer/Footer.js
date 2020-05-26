@@ -18,32 +18,32 @@ const Footer = () => {
 						<ul>
 							<li>
 								<a
+									href="#"
 									className="grey-text text-lighten-3"
-									href="#!"
 								>
 									Link 1
 								</a>
 							</li>
 							<li>
 								<a
+									href="#"
 									className="grey-text text-lighten-3"
-									href="#!"
 								>
 									Link 2
 								</a>
 							</li>
 							<li>
 								<a
+									href="#"
 									className="grey-text text-lighten-3"
-									href="#!"
 								>
 									Link 3
 								</a>
 							</li>
 							<li>
 								<a
+									href="#"
 									className="grey-text text-lighten-3"
-									href="#!"
 								>
 									Link 4
 								</a>
@@ -55,7 +55,11 @@ const Footer = () => {
 			<div className="footer-copyright">
 				<div className="container">
 					© 2014 Copyright Text
-					<a className="grey-text text-lighten-4 right" href="#!">
+					<a
+						href="#"
+						className="grey-text text-lighten-4 right"
+						href="#!"
+					>
 						More Links
 					</a>
 				</div>

@@ -1,6 +1,9 @@
 .Collection {
 	border: none;
 }
+.Google:hover {
+	font-size: 1.2rem;
+}
 .parent {
 	width: 30%;
 	height: 100%;

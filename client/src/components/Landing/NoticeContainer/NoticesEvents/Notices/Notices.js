@@ -5,38 +5,8 @@ class Notices extends Component {
 	render() {
 		return (
 			<div className="collection">
-				<a href="#!" className="collection-item">
+				<a href="#" className="collection-item">
 					Notice 1
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 2
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 3
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
-				</a>
-				<a href="#!" className="collection-item">
-					Notice 4
 				</a>
 			</div>
 		);

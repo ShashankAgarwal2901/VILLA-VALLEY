@@ -1,0 +1,31 @@
+.MemberTab {
+	font-size: 1.2rem;
+	width: 100%;
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.active {
+	background-color: #3ad781;
+}
+
+.Link {
+	color: rgb(195, 195, 195);
+	cursor: pointer;
+	transition: color 0.1s;
+}
+
+.Link:hover {
+	color: white;
+}
+.LinkActive {
+	color: white;
+}
+.Collection {
+	display: flex;
+}
+
+.Google:hover {
+	font-size: 1.5rem;
+}
