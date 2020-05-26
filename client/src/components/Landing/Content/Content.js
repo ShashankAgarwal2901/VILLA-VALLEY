@@ -9,7 +9,7 @@ class Content extends Component {
 	render() {
 		return (
 			<div className="container row">
-				<h5> Imgaes of our society:</h5>
+				<h5> Imgaes of our society</h5>
 				<div className={classes.ContentHead}>
 					<div className={"col l4 s12 m4 " + classes.Content}>
 						<Card image={image1} />

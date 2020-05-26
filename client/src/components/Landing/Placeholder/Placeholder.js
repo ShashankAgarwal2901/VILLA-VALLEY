@@ -27,7 +27,7 @@ class Placeholder extends Component {
 				<div className={classes.Overlay}>
 					<div className={"container " + classes.b}>
 						<div className={classes.landingContent}>
-							<h4> Welcome to Villa Valley Website </h4>
+							<h4> Welcome to Villa Valley</h4>
 							<p>
 								This is a information page for general viewing ,
 								as well as a Members area to share info
