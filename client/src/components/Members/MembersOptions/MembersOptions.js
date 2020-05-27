@@ -7,6 +7,7 @@ class MembersOptions extends React.Component {
 		Authorizations: "Auth",
 		PrivateNotices: "private-notices",
 		Scratchpad: "scratchpad",
+		LogOut: "log-out",
 	};
 
 	renderMembersOptions() {
@@ -35,6 +36,14 @@ class MembersOptions extends React.Component {
 				this.props.content === this.ContentState.Scratchpad
 					? classes.LinkActive
 					: null,
+			LogOutLI:
+				this.props.content === this.ContentState.LogOut
+					? classes.active
+					: null,
+			LogOutLink:
+				this.props.content === this.ContentState.LogOut
+					? classes.LinkActive
+					: null,
 		};
 		switch (this.props.auth) {
 			case null || false:
@@ -47,6 +56,14 @@ class MembersOptions extends React.Component {
 						stack.push(
 							<li
 								key={this.ContentState.Authorizations}
+								onClick={(e) => {
+									e.persist();
+									this.props.func(
+										e,
+										this.ContentState.Authorizations
+									);
+									this.props.closeDrawerfunc();
+								}}
 								className={
 									classes.MemberTab +
 									" " +
@@ -54,19 +71,11 @@ class MembersOptions extends React.Component {
 								}
 							>
 								<a
-									onClick={(e) => {
-										e.persist();
-										this.props.func(
-											e,
-											this.ContentState.Authorizations
-										);
-									}}
 									className={
 										classes.Link +
 										" " +
 										ClassesToAttach.authLinkclass
 									}
-									href="#"
 								>
 									Authorizations
 								</a>
@@ -76,6 +85,14 @@ class MembersOptions extends React.Component {
 					stack.push(
 						<li
 							key={this.ContentState.PrivateNotices}
+							onClick={(e) => {
+								e.persist();
+								this.props.func(
+									e,
+									this.ContentState.PrivateNotices
+								);
+								this.props.closeDrawerfunc();
+							}}
 							className={
 								classes.MemberTab +
 								" " +
@@ -83,25 +100,25 @@ class MembersOptions extends React.Component {
 							}
 						>
 							<a
-								onClick={(e) => {
-									e.persist();
-									this.props.func(
-										e,
-										this.ContentState.PrivateNotices
-									);
-								}}
 								className={
 									classes.Link +
 									" " +
 									ClassesToAttach.privNoticeLinkclass
 								}
-								href="#"
 							>
 								Private Notices
 							</a>
 						</li>,
 						<li
 							key={this.ContentState.Scratchpad}
+							onClick={(e) => {
+								e.persist();
+								this.props.func(
+									e,
+									this.ContentState.Scratchpad
+								);
+								this.props.closeDrawerfunc();
+							}}
 							className={
 								classes.MemberTab +
 								" " +
@@ -109,21 +126,37 @@ class MembersOptions extends React.Component {
 							}
 						>
 							<a
-								onClick={(e) => {
-									e.persist();
-									this.props.func(
-										e,
-										this.ContentState.Scratchpad
-									);
-								}}
 								className={
 									classes.Link +
 									" " +
 									ClassesToAttach.scratchLinkclass
 								}
-								href="#"
 							>
 								Scratchpad
+							</a>
+						</li>,
+						<li
+							key={this.ContentState.LogOut}
+							className={
+								classes.MemberTab +
+								" " +
+								ClassesToAttach.LogOutLI
+							}
+							onClick={(e) => {
+								e.persist();
+								this.props.closeDrawerfunc();
+								this.props.func(e, this.ContentState.LogOut);
+							}}
+						>
+							<a
+								className={
+									classes.Link +
+									" " +
+									ClassesToAttach.LogOutLink
+								}
+								href=""
+							>
+								Logout
 							</a>
 						</li>
 					);

@@ -3,6 +3,8 @@ const requireAdmin = require("../middlewares/requireAdmin.js");
 const mongoose = require("mongoose");
 const pendingUsersToAuthorize = mongoose.model("pendingUsers");
 const registeredMembers = mongoose.model("Users");
+const Passwords = mongoose.model("password");
+const bcrypt = require("bcrypt");
 
 module.exports = (app) => {
 	app.post("/api/get_pending_users", requireAdmin, async (req, res) => {
@@ -26,5 +28,24 @@ module.exports = (app) => {
 		if (newUser) {
 			res.send({ newUser: newUser });
 		} else res.send({ message: "error" });
+	});
+
+	app.post("/api/check_admin", requireLogin, async (req, res) => {
+		Passwords.findOne({ id: "password" }).then((obj) => {
+			bcrypt.compare(req.body.password, obj.password, function (
+				err,
+				result
+			) {
+				if (err) {
+					res.send({ err: err });
+				}
+				if (result) {
+					res.send({ success: "success" });
+				} else {
+					// response is OutgoingMessage object that server response http request
+					res.send({ failure: "Wrong password" });
+				}
+			});
+		});
 	});
 };

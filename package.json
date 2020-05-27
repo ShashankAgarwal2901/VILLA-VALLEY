@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ShashankAgarwal2901/VILLA-VALLEY#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",

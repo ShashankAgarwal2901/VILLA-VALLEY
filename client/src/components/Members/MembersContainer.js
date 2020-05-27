@@ -21,10 +21,14 @@ class MembersContainer extends Component {
 
 	updateWindowDimensions() {
 		this.setState({ screenWidth: window.innerWidth });
-		if (window.innerWidth <= 900) {
+		if (window.innerWidth <= 800) {
 			this.setState({ showDrawer: false });
 		}
 	}
+
+	closeDrawer = () => {
+		this.setState({ showDrawer: false });
+	};
 
 	MembersContentState = (e, a) => {
 		this.setState({ ContentState: a });
@@ -32,11 +36,12 @@ class MembersContainer extends Component {
 	};
 
 	contentToRender = () => {
-		if (this.state.screenWidth > 900) {
+		if (this.state.screenWidth > 800) {
 			return (
 				<div className={classes.parent}>
 					<div className={"col s4 " + classes.LargeOptions}>
 						<MembersOptions
+							closeDrawerfunc={() => null}
 							content={this.state.ContentState}
 							func={this.MembersContentState}
 						/>
@@ -67,6 +72,7 @@ class MembersContainer extends Component {
 					>
 						<div className={classes.MembersDrawerParent}>
 							<MembersOptions
+								closeDrawerfunc={this.closeDrawer}
 								content={this.state.ContentState}
 								func={this.MembersContentState}
 							/>

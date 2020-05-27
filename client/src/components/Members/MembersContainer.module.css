@@ -32,3 +32,26 @@
 	z-index: 100;
 	background-color: rgb(51, 54, 66);
 }
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+	.MembersDrawerParent {
+		width: 75%;
+	}
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+	.MembersDrawerParent {
+		width: 60%;
+	}
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+	.MembersDrawerParent {
+		width: 50%;
+	}
+}
+
+/* Media Query for Laptops and Desktops */

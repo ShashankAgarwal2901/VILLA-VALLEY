@@ -1,0 +1,30 @@
+.Password {
+	padding-top: 30vh;
+}
+
+.inputForm {
+	width: 35%;
+}
+
+.submitButton {
+	cursor: pointer;
+	padding: 10px;
+	background-color: rgb(51, 54, 66);
+	color: white;
+	font-size: 1.2rem;
+	border: none;
+	transition: all 0.2s;
+}
+.submitButton:hover {
+	padding: 15px;
+	background-color: rgb(51, 54, 70);
+	color: white;
+	font-size: 1.2rem;
+	border: none;
+}
+
+@media (max-width: 480px) {
+	.inputForm {
+		width: 65%;
+	}
+}

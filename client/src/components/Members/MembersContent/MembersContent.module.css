@@ -2,3 +2,7 @@
 	position: absolute;
 	margin: 100px 100px;
 }
+
+.parent {
+	height: 100%;
+}

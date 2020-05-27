@@ -5,3 +5,9 @@
 	z-index: 100;
 	background-color: rgb(51, 54, 66);
 }
+
+@media (max-width: 650px) {
+	.MembersDrawerParent {
+		width: 45%;
+	}
+}

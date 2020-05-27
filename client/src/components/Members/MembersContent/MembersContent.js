@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import classes from "./MembersContent.module.css";
 import Authorizations from "./Authorizations/Authorizations.js";
+import Modal from "../../HOC/Modal.js";
+import LogOutConfirmation from "./LogOutConfirmation/LogOutConfirmation.js";
 
 class MembersContent extends React.Component {
 	renderMembersContent = () => {
@@ -19,11 +21,19 @@ class MembersContent extends React.Component {
 
 			default:
 				switch (this.props.content) {
+					case null:
+						return <div></div>;
 					case "Auth":
 						return <Authorizations />;
+					case "log-out":
+						return (
+							<Modal>
+								<LogOutConfirmation />
+							</Modal>
+						);
 
 					default:
-						return <h4>{this.props.content}</h4>;
+						return <div>{this.props.content}</div>;
 				}
 		}
 	};

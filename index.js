@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 require("./models/pendingUser.js");
 require("./models/user.js");
 require("./models/superAdmin.js");
+require("./models/password.js");
 require("./services/passport.js");
 const mongoose = require("mongoose");
 const keys = require("./config/keys.js");
