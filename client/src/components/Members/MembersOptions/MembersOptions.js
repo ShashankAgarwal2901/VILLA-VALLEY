@@ -5,6 +5,7 @@ import classes from "./MembersOptions.module.css";
 class MembersOptions extends React.Component {
 	ContentState = {
 		Authorizations: "Auth",
+		RegisteredUsers: "all-users",
 		PrivateNotices: "private-notices",
 		Scratchpad: "scratchpad",
 		LogOut: "log-out",
@@ -18,6 +19,14 @@ class MembersOptions extends React.Component {
 					: null,
 			authLinkclass:
 				this.props.content === this.ContentState.Authorizations
+					? classes.LinkActive
+					: null,
+			RegLIclass:
+				this.props.content === this.ContentState.RegisteredUsers
+					? classes.active
+					: null,
+			RegLinkclass:
+				this.props.content === this.ContentState.RegisteredUsers
 					? classes.LinkActive
 					: null,
 			privNoticeLIclass:
@@ -78,6 +87,32 @@ class MembersOptions extends React.Component {
 									}
 								>
 									Authorizations
+								</a>
+							</li>,
+							<li
+								key={this.ContentState.RegisteredUsers}
+								onClick={(e) => {
+									e.persist();
+									this.props.func(
+										e,
+										this.ContentState.RegisteredUsers
+									);
+									this.props.closeDrawerfunc();
+								}}
+								className={
+									classes.MemberTab +
+									" " +
+									ClassesToAttach.RegLIclass
+								}
+							>
+								<a
+									className={
+										classes.Link +
+										" " +
+										ClassesToAttach.RegLinkclass
+									}
+								>
+									Registered Users
 								</a>
 							</li>
 						);

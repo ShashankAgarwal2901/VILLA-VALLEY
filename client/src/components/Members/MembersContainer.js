@@ -60,9 +60,11 @@ class MembersContainer extends Component {
 							e.persist();
 							this.setState({ showDrawer: true });
 						}}
-						class={"btn-floating btn-large red " + classes.Button}
+						className={
+							"btn-floating btn-large red " + classes.Button
+						}
 					>
-						<i class="large material-icons">reorder</i>
+						<i className="large material-icons">reorder</i>
 					</a>
 					<CSSTransition
 						in={this.state.showDrawer}

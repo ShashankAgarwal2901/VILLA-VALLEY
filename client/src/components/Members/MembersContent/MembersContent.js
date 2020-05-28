@@ -4,6 +4,8 @@ import classes from "./MembersContent.module.css";
 import Authorizations from "./Authorizations/Authorizations.js";
 import Modal from "../../HOC/Modal.js";
 import LogOutConfirmation from "./LogOutConfirmation/LogOutConfirmation.js";
+import RegisteredUsers from "./RegisteredUsers/RegisteredUsers.js";
+import PrivNotices from "./PrivNotices/PrivNotices.js";
 
 class MembersContent extends React.Component {
 	renderMembersContent = () => {
@@ -25,6 +27,10 @@ class MembersContent extends React.Component {
 						return <div></div>;
 					case "Auth":
 						return <Authorizations />;
+					case "all-users":
+						return <RegisteredUsers />;
+					case "private-notices":
+						return <PrivNotices />;
 					case "log-out":
 						return (
 							<Modal>

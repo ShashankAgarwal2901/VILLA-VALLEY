@@ -1,27 +1,19 @@
 import React from "react";
 import * as actions from "../../../../actions";
 import { connect } from "react-redux";
-import "./Authorizations.css";
 import axios from "axios";
 
-class Authorizations extends React.Component {
+class RegisteredUsers extends React.Component {
 	state = {
 		value: "",
-		pendingUsers: [],
+		usersList: [],
 	};
-	fetchAuthList = async () => {
-		const res = await axios.post("api/get_pending_users");
-		this.setState({ pendingUsers: res.data });
-	};
-	addUser = async (e, user) => {
-		const res = await axios.post("api/add_user", { userToAdd: user });
-	};
-
-	denyUser = async (e, user) => {
-		const res = await axios.post("api/deny_user", { userToDel: user });
+	fetchUsersList = async () => {
+		const res = await axios.post("api/users_list");
+		this.setState({ usersList: res.data });
 	};
 	componentDidMount(prevProps, nextProps) {
-		this.fetchAuthList();
+		this.fetchUsersList();
 	}
 	handleChange = (e) => {
 		this.setState({ value: e.target.value });
@@ -32,7 +24,6 @@ class Authorizations extends React.Component {
 			return <h6 className="red-text center">Wrong Password</h6>;
 		} else return null;
 	};
-
 	render() {
 		if (this.props.auth) {
 			if (
@@ -74,9 +65,9 @@ class Authorizations extends React.Component {
 			if (this.props.adminStatus === true) {
 				return (
 					<div className="row">
-						<h4 className="center"> New Users to add </h4>
-						{this.state.pendingUsers
-							? this.state.pendingUsers.map((user, i) => {
+						<h4 className="center"> All Registered Users </h4>
+						{this.state.usersList
+							? this.state.usersList.map((user, i) => {
 									return (
 										<div key={i} className="col s12 m6">
 											<div className="card blue-grey white">
@@ -87,32 +78,24 @@ class Authorizations extends React.Component {
 													<p>{user.email}</p>
 												</div>
 												<div className="card-action">
-													<a
-														href="#"
-														onClick={(e) => {
-															e.persist();
-															this.addUser(
+													{!user.admin ? (
+														<a
+															href="#"
+															onClick={(e) => {
+																e.persist();
+																/*this.props.addUser(
 																e,
 																user._id
-															);
-															this.fetchAuthList();
-														}}
-													>
-														Accept
-													</a>
-													<a
-														href="#"
-														onClick={(e) => {
-															e.persist();
-															this.denyUser(
-																e,
-																user._id
-															);
-															this.fetchAuthList();
-														}}
-													>
-														Deny
-													</a>
+															);*/
+															}}
+														>
+															Make Admin
+														</a>
+													) : (
+														<div>
+															Already an admin
+														</div>
+													)}
 												</div>
 											</div>
 										</div>
@@ -133,4 +116,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(Authorizations);
+export default connect(mapStateToProps, actions)(RegisteredUsers);
