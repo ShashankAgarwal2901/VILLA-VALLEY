@@ -5,9 +5,10 @@ import axios from "axios";
 
 class ViewNotice extends React.Component {
 	componentDidMount() {
-		this.sawNotice();
+		if (this.props.noticeType === "Members") {
+			this.sawNotice();
+		}
 	}
-	componentWillUnmount() {}
 	sawNotice = () => {
 		let flag = 0;
 		for (var i = 0; i < this.props.notice.seenBy.length; i++) {
