@@ -7,6 +7,8 @@ const users = mongoose.model("Users");
 const registeredMembers = mongoose.model("Users");
 const Passwords = mongoose.model("password");
 const bcrypt = require("bcrypt");
+const PrivNotice = mongoose.model("privNotices");
+const PublicNotice = mongoose.model("publicNotices");
 
 module.exports = (app) => {
 	app.post("/api/get_pending_users", requireAdmin, async (req, res) => {
@@ -15,6 +17,18 @@ module.exports = (app) => {
 				return user;
 			})
 			.then((users) => res.send(users));
+	});
+
+	app.post("/api/saw_notice", requireLogin, async (req, res) => {
+		console.log("updating");
+		const updatedNotice = await PrivNotice.findOneAndUpdate(
+			{ _id: req.body.whichNotice },
+			{ $addToSet: { seenBy: req.body.userThatSaw } },
+			function (err, doc) {
+				if (err) return res.send(500, { error: err });
+				return res.send("Succesfully saved.");
+			}
+		);
 	});
 
 	app.post("/api/users_list", requireAdmin, async (req, res) => {
@@ -31,12 +45,6 @@ module.exports = (app) => {
 						res.send([...superUsers, ...normalUsers])
 					);
 			});
-		/*users
-			.find({}, function (err, user) {
-				return user;
-			})
-			.then((users) => (stack = stack.concat(users)));*/
-		/*res.send(stack);*/
 	});
 
 	app.post("/api/add_user", requireAdmin, async (req, res) => {
@@ -56,6 +64,58 @@ module.exports = (app) => {
 	app.post("/api/deny_user", requireAdmin, async (req, res) => {
 		const userToDel = await pendingUsersToAuthorize.findOneAndDelete({
 			_id: req.body.userToDel,
+		});
+	});
+
+	app.post("/api/new_notice", requireAdmin, async (req, res) => {
+		const { title, subject, content, visibility } = req.body.NoticeContent;
+		if (visibility === "Members") {
+			const newNotice = await new PrivNotice({
+				title,
+				subject,
+				content,
+				authorName: req.user.name,
+				authorEmail: req.user.email,
+				createdOn: Date.now(),
+			}).save();
+			if (newNotice) {
+				res.send({ message: "success" });
+			} else {
+				res.send({ message: "error" });
+			}
+		}
+		if (visibility === "Public") {
+			const newNotice = await new PublicNotice({
+				title,
+				subject,
+				content,
+				authorName: req.user.name,
+				authorEmail: req.user.email,
+				reply: [],
+				createdOn: Date.now(),
+				seenBy: [],
+			}).save();
+			if (newNotice) {
+				res.send({ message: "success" });
+			} else {
+				res.send({ message: "error" });
+			}
+		}
+	});
+
+	app.post("/api/get_private_notices", requireLogin, async (req, res) => {
+		PrivNotice.find({}, function (err, notice) {
+			return notice;
+		}).then((notices) => {
+			res.send(notices);
+		});
+	});
+
+	app.post("/api/get_public_notices", requireLogin, async (req, res) => {
+		PublicNotice.find({}, function (err, notice) {
+			return notice;
+		}).then((notices) => {
+			res.send(notices);
 		});
 	});
 

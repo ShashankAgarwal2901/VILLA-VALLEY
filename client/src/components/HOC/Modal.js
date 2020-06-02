@@ -13,11 +13,10 @@ class Modal extends React.Component {
 	componentDidMount() {
 		this.setState({ show: true });
 	}
+
 	closeModal = () => {
 		this.setState({ show: false });
-	};
-	state = {
-		show: false,
+		this.props.func();
 	};
 
 	render() {
@@ -33,6 +32,10 @@ class Modal extends React.Component {
 				unmountOnExit
 			>
 				<div className={classes.ModalParent}>
+					<div
+						className={classes.ModalBG}
+						onClick={(e) => this.closeModal(e)}
+					></div>
 					<div className={classes.Modal}>{renderChild}</div>
 				</div>
 			</CSSTransition>

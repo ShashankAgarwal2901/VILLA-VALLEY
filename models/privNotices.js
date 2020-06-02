@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-require("./replies.js")
-conse repliesSchema = mongoose.model('replies')
+const repliesSchema = require("./replies.js");
 
 const privNoticeSchema = new Schema({
 	title: String,
@@ -9,9 +8,9 @@ const privNoticeSchema = new Schema({
 	authorEmail: String,
 	subject: String,
 	content: String,
-	reply: [repliesSchema],
+	reply: { type: [repliesSchema], default: [] },
 	createdOn: Date,
-	seenBy: [mongoose.Schema.Types.ObjectId],
+	seenBy: [String],
 });
 
 mongoose.model("privNotices", privNoticeSchema);

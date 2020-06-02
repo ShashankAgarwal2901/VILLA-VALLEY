@@ -8,6 +8,9 @@ import RegisteredUsers from "./RegisteredUsers/RegisteredUsers.js";
 import PrivNotices from "./PrivNotices/PrivNotices.js";
 
 class MembersContent extends React.Component {
+	setModalFalse = () => {
+		return;
+	};
 	renderMembersContent = () => {
 		switch (this.props.auth) {
 			case null:
@@ -33,7 +36,7 @@ class MembersContent extends React.Component {
 						return <PrivNotices />;
 					case "log-out":
 						return (
-							<Modal>
+							<Modal func={this.setModalFalse}>
 								<LogOutConfirmation />
 							</Modal>
 						);

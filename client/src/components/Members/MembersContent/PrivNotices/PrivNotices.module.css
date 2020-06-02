@@ -6,3 +6,30 @@
 	position: fixed;
 	z-index: 100;
 }
+
+.Button2 {
+	padding: 15px;
+	color: black;
+	font-weight: bold;
+	cursor: pointer;
+	background: none;
+	border: 2px solid black;
+	transition: all 0.2s ease-out;
+}
+.Button2:hover {
+	color: #26a69a;
+	border: 2px solid #26a69a;
+}
+
+.Item {
+	color: #26a69a;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: all 0.1s ease-out;
+}
+
+.Item:hover {
+	color: #87a69a;
+}

@@ -202,7 +202,7 @@ class MembersOptions extends React.Component {
 	}
 	render() {
 		return (
-			<div class={classes.Collection}>
+			<div className={classes.Collection}>
 				{" "}
 				<ul className="col s12"> {this.renderMembersOptions()} </ul>
 			</div>

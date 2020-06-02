@@ -9,12 +9,13 @@ class RegisteredUsers extends React.Component {
 		usersList: [],
 	};
 	fetchUsersList = async () => {
-		const res = await axios.post("api/users_list");
+		const res = await axios.post("/api/users_list");
 		this.setState({ usersList: res.data });
 	};
 	componentDidMount(prevProps, nextProps) {
 		this.fetchUsersList();
 	}
+
 	handleChange = (e) => {
 		this.setState({ value: e.target.value });
 	};
@@ -32,30 +33,30 @@ class RegisteredUsers extends React.Component {
 			) {
 				return (
 					<div className="row center Password">
-						<i class="material-icons prefix">account_circle</i>
+						<i className="material-icons prefix">account_circle</i>
 						<form
 							onSubmit={(e) =>
 								this.props.checkAdmin(e, this.state.value)
 							}
 						>
-							<div class="input-field inline inputForm">
+							<div className="input-field inline inputForm">
 								<input
 									id="password_inline"
 									type="password"
 									value={this.state.value}
 									onChange={this.handleChange}
-									class="validate"
+									className="validate"
 								/>
 								<h5>
 									<span
-										class="helper-text"
+										className="helper-text"
 										data-error="wrong"
 										data-success="right"
 									>
 										Enter Password
 									</span>
 								</h5>
-								<input type="Submit" class="submitButton" />
+								<input type="Submit" className="submitButton" />
 								{this.wrongPassword()}
 							</div>
 						</form>

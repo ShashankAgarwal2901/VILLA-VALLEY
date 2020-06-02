@@ -3,7 +3,5 @@ const Schema = mongoose.Schema;
 
 const repliesSchema = new Schema({
 	reply: "String",
-	userID: mongoose.Schema.Types.ObjectId,
+	userID: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
 });
-
-mongoose.model("replies", repliesSchema);
