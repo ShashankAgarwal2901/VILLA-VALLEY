@@ -30,6 +30,9 @@ class RegisteredUsers extends React.Component {
 		if (res.data.message != "success") {
 			alert("error");
 		}
+		if (res.data.message === "success") {
+			this.fetchUsersList();
+		}
 	};
 
 	removeUser = async (e, id) => {
@@ -169,7 +172,6 @@ class RegisteredUsers extends React.Component {
 																			e,
 																			user._id
 																		);
-																		this.fetchUsersList();
 																	}}
 																>
 																	Make Admin
