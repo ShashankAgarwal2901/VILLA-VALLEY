@@ -6,6 +6,7 @@ const superAdmins = mongoose.model("superAdmin");
 const users = mongoose.model("Users");
 const registeredMembers = mongoose.model("Users");
 const Passwords = mongoose.model("password");
+const keys = require("../config/keys.js");
 const bcrypt = require("bcrypt");
 const PrivNotice = mongoose.model("privNotices");
 const PublicNotice = mongoose.model("publicNotices");
@@ -20,7 +21,6 @@ module.exports = (app) => {
 	});
 
 	app.post("/api/saw_notice", requireLogin, async (req, res) => {
-		console.log("updating");
 		const updatedNotice = await PrivNotice.findOneAndUpdate(
 			{ _id: req.body.whichNotice },
 			{ $addToSet: { seenBy: req.body.userThatSaw } },
@@ -65,6 +65,32 @@ module.exports = (app) => {
 		const userToDel = await pendingUsersToAuthorize.findOneAndDelete({
 			_id: req.body.userToDel,
 		});
+	});
+	app.post("/api/new_admin", requireAdmin, (req, res) => {
+		users
+			.findOneAndDelete({
+				_id: req.body.idOfUser,
+			})
+			.then((user) =>
+				new superAdmins({
+					admin: keys.checkingToken,
+					googleID: user.googleID,
+					name: user.name,
+					email: user.email,
+				})
+					.save()
+					.then((user) => res.send({ message: "success" }))
+			);
+	});
+
+	app.post("/api/remove_user", requireAdmin, async (req, res) => {
+		const userToDel = await users.findOneAndDelete({
+			_id: req.body.idOfUser,
+		});
+
+		if (userToDel) {
+			res.send({ message: "success" });
+		}
 	});
 
 	app.post("/api/new_notice", requireAdmin, async (req, res) => {

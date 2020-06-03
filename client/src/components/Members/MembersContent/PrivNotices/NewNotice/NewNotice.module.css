@@ -39,6 +39,7 @@
 }
 .Height {
 	height: 90vh;
+
 	overflow-wrap: break-word;
 	overflow-y: scroll;
 }
@@ -161,11 +162,13 @@
 		width: 80%;
 	}
 	.ModalParent {
+		height: 90vh;
 		width: 50vh;
 		padding: 10px;
 	}
 	.Height {
-		height: 100vh;
+		margin-top: -10px;
+		height: 100%;
 		overflow-wrap: break-word;
 		overflow-y: scroll;
 	}

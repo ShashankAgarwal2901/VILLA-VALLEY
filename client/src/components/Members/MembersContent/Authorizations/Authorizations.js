@@ -8,6 +8,8 @@ class Authorizations extends React.Component {
 	state = {
 		value: "",
 		pendingUsers: [],
+		usersToShow: [],
+		searchValue: "",
 	};
 	fetchAuthList = async () => {
 		const res = await axios.post("api/get_pending_users");
@@ -23,6 +25,31 @@ class Authorizations extends React.Component {
 	componentDidMount(prevProps, nextProps) {
 		this.fetchAuthList();
 	}
+
+	handleChange = (e) => {
+		this.setState({ value: e.target.value });
+	};
+
+	modifyList = () => {
+		if (this.state.searchValue === "") {
+			this.setState({ usersToShow: this.state.pendingUsers });
+		} else {
+			let list = [];
+			let regex = RegExp(this.state.searchValue, "i");
+			for (var i = 0; i < this.state.pendingUsers.length; i++) {
+				if (regex.test(this.state.pendingUsers[i].email)) {
+					list.push(this.state.pendingUsers[i]);
+				}
+			}
+
+			this.setState({ usersToShow: list });
+		}
+	};
+
+	updateSearch = (e) => {
+		e.preventDefault();
+		this.setState({ searchValue: e.target.value }, this.modifyList());
+	};
 	handleChange = (e) => {
 		this.setState({ value: e.target.value });
 	};
@@ -74,7 +101,33 @@ class Authorizations extends React.Component {
 			if (this.props.adminStatus === true) {
 				return (
 					<div className="row">
-						<h4 className="center"> New Users to add </h4>
+						<h4 className="center authParent">
+							{" "}
+							New Users to add{" "}
+						</h4>
+
+						<div className="row">
+							<div className="col s10 offset-s1 l8 offset-l2 authParent">
+								<div>
+									<input
+										onChange={(e) => {
+											e.persist();
+											this.updateSearch(e);
+										}}
+										placeholder="Search"
+										id="Searchbar"
+										value={this.state.searchValue}
+										type="text"
+										className="validate"
+									/>
+									<label>
+										<span className="material-icons authMaterial">
+											search
+										</span>
+									</label>
+								</div>
+							</div>
+						</div>
 						{this.state.pendingUsers
 							? this.state.pendingUsers.map((user, i) => {
 									return (

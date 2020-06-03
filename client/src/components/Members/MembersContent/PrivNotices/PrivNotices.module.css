@@ -7,6 +7,10 @@
 	z-index: 100;
 }
 
+.PrivParent {
+	margin-top: 15%;
+}
+
 .Button2 {
 	padding: 15px;
 	color: black;

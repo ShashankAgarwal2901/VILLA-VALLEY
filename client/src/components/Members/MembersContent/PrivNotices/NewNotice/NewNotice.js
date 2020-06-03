@@ -105,7 +105,6 @@ class NewNotice extends React.Component {
 	attachedClassMembers = "";
 	attachedClassPublic = "";
 	render() {
-		console.log(this.state.redirect);
 		return (
 			<div>
 				{this.state.viewSummary ? (

@@ -167,7 +167,7 @@ class PrivNotices extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className={classes.PrivParent}>
 				<div className="row">
 					<div className="col s6 center">
 						<button

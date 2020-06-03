@@ -5,6 +5,15 @@
 .inputForm {
 	width: 35%;
 }
+.authParent {
+}
+.authParent {
+	margin-top: 15%;
+	padding: 20px;
+}
+.authMaterial {
+	font-size: 32px;
+}
 
 .submitButton {
 	cursor: pointer;

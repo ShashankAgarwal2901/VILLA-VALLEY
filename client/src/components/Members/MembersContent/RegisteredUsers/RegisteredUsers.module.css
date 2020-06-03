@@ -1,0 +1,12 @@
+.Parent {
+	margin-top: 15%;
+	padding: 20px;
+}
+.Material {
+	font-size: 32px;
+}
+.actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
