@@ -14,6 +14,17 @@
 .authMaterial {
 	font-size: 32px;
 }
+.authConfirmModal {
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.card-action {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .submitButton {
 	cursor: pointer;

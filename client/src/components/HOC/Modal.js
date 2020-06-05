@@ -15,8 +15,10 @@ class Modal extends React.Component {
 	}
 
 	closeModal = () => {
+		let timer = setTimeout(() => {
+			this.props.func();
+		}, 400);
 		this.setState({ show: false });
-		this.props.func();
 	};
 
 	render() {

@@ -7,7 +7,7 @@ import MembersContent from "./MembersContent/MembersContent.js";
 class MembersContainer extends Component {
 	constructor() {
 		super();
-		this.state = { screenWidth: null, ContentState: "all-users" };
+		this.state = { screenWidth: null, ContentState: "private-notices" };
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 	}
 

@@ -8,10 +8,25 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: all 0.15s ease-in;
+}
+
+.MemberTab:hover {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes example {
+	from {
+	}
+	to {
+		background-color: #3ad781;
+	}
 }
 
 .active {
-	background-color: #3ad781;
+	animation-name: example;
+	animation-duration: 0.75s;
+	animation-fill-mode: forwards;
 }
 
 .Link {

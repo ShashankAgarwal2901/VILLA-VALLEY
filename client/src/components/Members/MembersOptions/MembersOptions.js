@@ -141,7 +141,7 @@ class MembersOptions extends React.Component {
 									ClassesToAttach.privNoticeLinkclass
 								}
 							>
-								Private Notices
+								Notices
 							</a>
 						</li>,
 						<li

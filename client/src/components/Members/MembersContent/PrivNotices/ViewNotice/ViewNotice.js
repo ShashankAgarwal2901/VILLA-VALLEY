@@ -37,7 +37,7 @@ class ViewNotice extends React.Component {
 					<div className={"card-content black-text"}>
 						<div className="row">
 							<p
-								onClick={() => this.props.func()}
+								onClick={() => this.props.closeModal()}
 								className={classes.Xmark}
 							>
 								X
@@ -51,13 +51,18 @@ class ViewNotice extends React.Component {
 									<p
 										style={{
 											fontSize: "0.9rem",
-											marginBottom: "5em",
+											marginBottom: "2em",
 										}}
 									>
 										{this.props.notice.authorEmail}{" "}
 									</p>
 								</i>
-								<p>
+								<p
+									style={{
+										fontSize: "1.5rem",
+										marginBottom: "0.2em",
+									}}
+								>
 									<strong>
 										{this.props.noticeType} Notice{" "}
 									</strong>
@@ -72,7 +77,7 @@ class ViewNotice extends React.Component {
 									}}
 								>
 									<i>
-										Published on :
+										Published on :{" "}
 										{this.props.notice.createdOn
 											.substr(0, 10)
 											.split("-")

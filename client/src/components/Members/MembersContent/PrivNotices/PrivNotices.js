@@ -175,7 +175,11 @@ class PrivNotices extends React.Component {
 								e.persist();
 								this.setNoticeState(e, "private");
 							}}
-							className={classes.Button2}
+							className={
+								this.state.showNotice === "private"
+									? classes.Button2 + " " + classes.active
+									: classes.Button2 + " " + classes.inactive
+							}
 						>
 							Members Notices
 						</button>{" "}
@@ -186,7 +190,11 @@ class PrivNotices extends React.Component {
 								e.persist();
 								this.setNoticeState(e, "public");
 							}}
-							className={classes.Button2}
+							className={
+								this.state.showNotice === "public"
+									? classes.Button2 + " " + classes.active
+									: classes.Button2 + " " + classes.inactive
+							}
 						>
 							Public Notices
 						</button>{" "}

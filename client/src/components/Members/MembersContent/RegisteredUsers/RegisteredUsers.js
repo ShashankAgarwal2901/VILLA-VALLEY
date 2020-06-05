@@ -3,6 +3,7 @@ import * as actions from "../../../../actions";
 import { connect } from "react-redux";
 import axios from "axios";
 import classes from "./RegisteredUsers.module.css";
+import Modal from "../../../HOC/Modal.js";
 
 class RegisteredUsers extends React.Component {
 	state = {
@@ -10,6 +11,7 @@ class RegisteredUsers extends React.Component {
 		usersList: [],
 		usersToShow: [],
 		searchValue: "",
+		showModal: false,
 	};
 	fetchUsersList = async () => {
 		const res = await axios.post("/api/users_list");
@@ -41,6 +43,9 @@ class RegisteredUsers extends React.Component {
 		if (res.data.message != "success") {
 			alert("error");
 		}
+		if (res.data.message === "success") {
+			this.fetchUsersList();
+		}
 	};
 
 	modifyList = () => {
@@ -68,6 +73,67 @@ class RegisteredUsers extends React.Component {
 		if (this.props.adminStatus === "Wrong password") {
 			return <h6 className="red-text center">Wrong Password</h6>;
 		} else return null;
+	};
+	setModalFalse = () => {
+		this.setState({
+			showModal: false,
+		});
+	};
+	showModalfunc = (e, a, b, c) => {
+		e.preventDefault();
+		this.setState({
+			showModal: { name: a, id: b, type: c },
+		});
+	};
+	ModalGenerator = () => {
+		if (this.state.showModal) {
+			return (
+				<Modal func={this.setModalFalse}>
+					<div className="card white">
+						<div className="card-content black-text">
+							<span className="card-title">Are you Sure?</span>
+							<p>
+								Are you sure you want{" "}
+								{this.state.showModal.type} this user?
+							</p>
+							<p className="center">
+								{this.state.showModal.name}
+							</p>
+						</div>
+
+						<div className="card-action">
+							<a
+								onClick={(e) => {
+									if (
+										this.state.showModal.type ===
+										"give ADMIN RIGHTS to"
+									) {
+										this.makeAdmin(
+											e,
+											this.state.showModal.id
+										);
+									}
+									if (
+										this.state.showModal.type === "remove"
+									) {
+										this.removeUser(
+											e,
+											this.state.showModal.id
+										);
+									}
+
+									this.setModalFalse();
+								}}
+								className="authConfirmModal"
+								href="#"
+							>
+								Confirm{" "}
+							</a>
+						</div>
+					</div>
+				</Modal>
+			);
+		}
 	};
 	render() {
 		if (this.props.auth) {
@@ -110,6 +176,7 @@ class RegisteredUsers extends React.Component {
 			if (this.props.adminStatus === true) {
 				return (
 					<div>
+						{this.ModalGenerator()}
 						<div className="row">
 							<div
 								className={
@@ -168,9 +235,11 @@ class RegisteredUsers extends React.Component {
 																		e
 																	) => {
 																		e.persist();
-																		this.makeAdmin(
+																		this.showModalfunc(
 																			e,
-																			user._id
+																			user.name,
+																			user._id,
+																			"give ADMIN RIGHTS to"
 																		);
 																	}}
 																>
@@ -182,11 +251,12 @@ class RegisteredUsers extends React.Component {
 																		e
 																	) => {
 																		e.persist();
-																		this.removeUser(
+																		this.showModalfunc(
 																			e,
-																			user._id
+																			user.name,
+																			user._id,
+																			"remove"
 																		);
-																		this.fetchUsersList();
 																	}}
 																>
 																	Remove User

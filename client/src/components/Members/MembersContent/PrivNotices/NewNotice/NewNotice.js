@@ -27,7 +27,6 @@ class NewNotice extends React.Component {
 		);
 	}
 	componentWillUnmount() {
-		console.log("will unmount");
 		window.removeEventListener("popstate", () => null);
 	}
 

@@ -8,11 +8,20 @@
 	top: 1%;
 	left: 1%;
 	font-size: 1.5rem;
-	padding: 8px;
+	width: 50px;
+	border-radius: 10px;
+	color: white;
+	padding: 0px 10px;
+	background-color: #d73f3f;
 	cursor: pointer;
-	width: auto;
-	font-weight: bold;
+
+	transition: all 0.2s ease-in;
 }
+
+.Xmark:hover {
+	border-radius: 5px;
+}
+
 .ConfirmSubmit {
 	width: 30%;
 	padding: 15px;
@@ -167,7 +176,6 @@
 		padding: 10px;
 	}
 	.Height {
-		margin-top: -10px;
 		height: 100%;
 		overflow-wrap: break-word;
 		overflow-y: scroll;

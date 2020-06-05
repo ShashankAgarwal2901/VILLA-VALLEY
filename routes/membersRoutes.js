@@ -58,14 +58,19 @@ module.exports = (app) => {
 			email: userToAdd.email,
 		}).save();
 		if (newUser) {
-			res.send({ newUser: newUser });
+			res.send({ message: "success" });
 		} else res.send({ message: "error" });
 	});
+
 	app.post("/api/deny_user", requireAdmin, async (req, res) => {
 		const userToDel = await pendingUsersToAuthorize.findOneAndDelete({
 			_id: req.body.userToDel,
 		});
+		if (newUser) {
+			res.send({ message: "success" });
+		} else res.send({ message: "error" });
 	});
+
 	app.post("/api/new_admin", requireAdmin, (req, res) => {
 		users
 			.findOneAndDelete({

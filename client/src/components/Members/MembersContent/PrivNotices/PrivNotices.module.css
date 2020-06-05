@@ -13,18 +13,53 @@
 
 .Button2 {
 	padding: 15px;
-	color: black;
-	font-weight: bold;
+	color: white;
 	cursor: pointer;
-	background: none;
-	border: 2px solid black;
+	background-color: #26a69a;
+	border-radius: 10px;
+	margin-bottom: 0px;
+	border: none;
+	transform: translateY(0);
 	transition: all 0.2s ease-out;
 }
 .Button2:hover {
-	color: #26a69a;
-	border: 2px solid #26a69a;
+	color: white;
+	border-radius: 15px;
 }
 
+.active {
+	animation-name: buttonAnimate;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.inactive {
+	animation-name: buttonAnimaterev;
+	animation-duration: 0.5s;
+	animation-direction: forwards;
+}
+
+@keyframes buttonAnimate {
+	from {
+		padding-bottom: 15px;
+		margin-bottom: 0px;
+	}
+	to {
+		padding-bottom: 30px;
+		margin-bottom: -15px;
+	}
+}
+
+@keyframes buttonAnimaterev {
+	from {
+		padding-bottom: 30px;
+		margin-bottom: -15px;
+	}
+	to {
+		padding-bottom: 15px;
+		margin-bottom: -15px;
+	}
+}
 .Item {
 	color: #26a69a;
 	cursor: pointer;
