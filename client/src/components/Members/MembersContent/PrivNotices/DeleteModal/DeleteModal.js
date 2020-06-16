@@ -21,10 +21,7 @@ class DeleteModal extends React.Component {
 			<div className="card white">
 				<div className="card-content black-text">
 					<span className="card-title">Delete?</span>
-					<p>
-						Are you sure you want to Delete this{" "}
-						{this.props.type ? <p>notice</p> : <p>scratch</p>} :{" "}
-					</p>
+					<p>Are you sure you want to Delete this Notice?</p>
 				</div>
 				<div className="card-action">
 					<a
