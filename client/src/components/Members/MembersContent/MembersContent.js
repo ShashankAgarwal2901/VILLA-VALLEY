@@ -6,6 +6,7 @@ import Modal from "../../HOC/Modal.js";
 import LogOutConfirmation from "./LogOutConfirmation/LogOutConfirmation.js";
 import RegisteredUsers from "./RegisteredUsers/RegisteredUsers.js";
 import PrivNotices from "./PrivNotices/PrivNotices.js";
+import Scratchpad from "./Scratchpad/Scratchpad.js";
 
 class MembersContent extends React.Component {
 	setModalFalse = () => {
@@ -34,6 +35,8 @@ class MembersContent extends React.Component {
 						return <RegisteredUsers />;
 					case "private-notices":
 						return <PrivNotices />;
+					case "scratchpad":
+						return <Scratchpad />;
 					case "log-out":
 						return (
 							<Modal func={this.setModalFalse}>

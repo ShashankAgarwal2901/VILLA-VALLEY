@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 require("./models/pendingUser.js");
 require("./models/user.js");
 require("./models/superAdmin.js");
+require("./models/scratches.js");
 require("./models/privNotices.js");
 require("./models/publicNotices.js");
 require("./models/password.js");

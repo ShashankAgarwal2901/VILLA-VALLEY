@@ -1,0 +1,88 @@
+.parent {
+	width: 750px;
+	display: flex;
+	border-radius: 30px;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	height: 350px;
+	box-shadow: 0px 5px 5px #222222;
+}
+
+.Xmark {
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	font-size: 1.3rem;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 10px;
+	background-color: #d73f3f;
+	cursor: pointer;
+
+	transition: all 0.2s ease-in;
+}
+
+.TextArea {
+	height: 100px;
+	width: 80vh;
+	outline: none;
+	padding: 15px;
+
+	transition: all 0.15s ease-in;
+}
+.TextArea:focus {
+	border-radius: 20px;
+}
+
+.Button3 {
+	position: relative;
+	margin-top: 10px;
+	color: rgba(0, 0, 0, 0.8);
+	padding: 15px;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.ConfirmSubmit {
+	width: auto;
+	padding: 15px;
+	color: black;
+	font-weight: bold;
+	cursor: pointer;
+	background: none;
+	border: 2px solid black;
+	transition: all 0.2s ease-out;
+}
+
+.ConfirmSubmit:hover {
+	color: #1f7a1f;
+	border: 2px solid #1f7a1f;
+}
+.ConfirmSubmit:focus {
+	background: none;
+}
+
+@media (max-width: 750px) {
+	.parent {
+		width: 600px;
+	}
+	.TextArea {
+		width: 400px;
+	}
+}
+
+@media (max-width: 650px) {
+	.parent {
+		width: 400px;
+	}
+	.TextArea {
+		width: 300px;
+	}
+}

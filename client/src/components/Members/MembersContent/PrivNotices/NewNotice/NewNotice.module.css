@@ -7,10 +7,14 @@
 	position: absolute;
 	top: 1%;
 	left: 1%;
-	font-size: 1.5rem;
-	width: 50px;
-	border-radius: 10px;
+	font-size: 1.3rem;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
 	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 0px 10px;
 	background-color: #d73f3f;
 	cursor: pointer;
@@ -19,7 +23,9 @@
 }
 
 .Xmark:hover {
-	border-radius: 5px;
+	width: 35px;
+	height: 35px;
+	border-radius: 35px;
 }
 
 .ConfirmSubmit {
@@ -135,14 +141,6 @@
 	position: relative;
 	margin-top: 10px;
 	color: rgba(0, 0, 0, 0.8);
-	padding: 15px;
-	font-weight: bold;
-	font-size: 1.2rem;
-}
-.Button3:hover {
-	position: relative;
-	margin-top: 10px;
-	color: black;
 	padding: 15px;
 	font-weight: bold;
 	font-size: 1.2rem;

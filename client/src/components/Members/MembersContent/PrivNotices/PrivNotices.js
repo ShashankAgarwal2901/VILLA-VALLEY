@@ -5,15 +5,37 @@ import Modal from "../../../HOC/Modal.js";
 import classes from "./PrivNotices.module.css";
 import { connect } from "react-redux";
 import axios from "axios";
+import DeleteModal from "./DeleteModal/DeleteModal.js";
 
 class PrivNotices extends React.Component {
 	state = {
 		showModal: false,
 		showNotice: "private",
 		ViewTheNotice: false,
+		showDeleteModal: false,
 		NoticeType: "",
 		PrivateNotices: [],
 		PublicNotices: [],
+	};
+
+	showDeleteModal = (a, b) => {
+		this.setState({ showDeleteModal: { type: a, id: b } });
+	};
+
+	closeDeleteModal = () => {
+		this.setState({ showDeleteModal: false });
+	};
+
+	deleteModal = () => {
+		return this.state.showDeleteModal ? (
+			<Modal func={this.closeDeleteModal}>
+				<DeleteModal
+					type={this.state.showDeleteModal.type}
+					id={this.state.showDeleteModal.id}
+					fetch={this.fetchNotices}
+				/>
+			</Modal>
+		) : null;
 	};
 	setModalFalse = () => {
 		this.setState({
@@ -51,13 +73,17 @@ class PrivNotices extends React.Component {
 			</Modal>
 		);
 	};
-	componentDidMount() {
+	fetchNotices = () => {
 		axios.post("/api/get_private_notices").then((res) => {
 			this.setState({ PrivateNotices: res.data });
 		});
 		axios.post("/api/get_public_notices").then((res) => {
 			this.setState({ PublicNotices: res.data });
 		});
+	};
+
+	componentDidMount() {
+		this.fetchNotices();
 	}
 	showNotices = () => {
 		switch (this.state.showNotice) {
@@ -69,33 +95,55 @@ class PrivNotices extends React.Component {
 						</li>
 						{this.state.PrivateNotices.map((notice, i) => {
 							return (
-								<li
-									onClick={(e) => {
-										e.persist();
-
-										this.setViewTheNotice(
-											e,
-											{ ...notice },
-											"Members"
-										);
-									}}
+								<div
 									key={i}
-									className={
-										"collection-item " + classes.Item
-									}
+									style={{
+										display: "flex",
+										flexFlow: "row",
+										marginBottom: "2px",
+										borderBottom: "1px solid #DDDDDD",
+									}}
 								>
-									<p>{notice.title}</p>
-									<span>
-										<p>
-											<i>Published on: </i>
-											{notice.createdOn
-												.substr(0, 10)
-												.split("-")
-												.reverse()
-												.join("-")}
-										</p>
-									</span>
-								</li>
+									{this.props.adminStatus === true ? (
+										<button
+											onClick={() =>
+												this.showDeleteModal(
+													"private",
+													notice._id
+												)
+											}
+											className={classes.Xmark}
+										>
+											x
+										</button>
+									) : null}
+									<li
+										onClick={(e) => {
+											e.persist();
+
+											this.setViewTheNotice(
+												e,
+												{ ...notice },
+												"Members"
+											);
+										}}
+										className={
+											"collection-item " + classes.Item
+										}
+									>
+										<p>{notice.title}</p>
+										<span>
+											<p>
+												<i>Published on: </i>
+												{notice.createdOn
+													.substr(0, 10)
+													.split("-")
+													.reverse()
+													.join("-")}
+											</p>
+										</span>
+									</li>
+								</div>
 							);
 						})}
 					</div>
@@ -109,33 +157,56 @@ class PrivNotices extends React.Component {
 						</li>
 						{this.state.PublicNotices.map((notice, i) => {
 							return (
-								<li
-									onClick={(e) => {
-										e.persist();
-
-										this.setViewTheNotice(
-											e,
-											{ ...notice },
-											"Public"
-										);
-									}}
+								<div
 									key={i}
-									className={
-										"collection-item " + classes.Item
-									}
+									style={{
+										display: "flex",
+										flexFlow: "row",
+										marginBottom: "2px",
+										borderBottom: "1px solid #DDDDDD",
+									}}
 								>
-									<p>{notice.title}</p>
-									<span>
-										<p>
-											<i>Published on: </i>
-											{notice.createdOn
-												.substr(0, 10)
-												.split("-")
-												.reverse()
-												.join("-")}
-										</p>
-									</span>
-								</li>
+									{" "}
+									{this.props.adminStatus === true ? (
+										<button
+											onClick={() =>
+												this.showDeleteModal(
+													"public",
+													notice._id
+												)
+											}
+											className={classes.Xmark}
+										>
+											x
+										</button>
+									) : null}
+									<li
+										onClick={(e) => {
+											e.persist();
+
+											this.setViewTheNotice(
+												e,
+												{ ...notice },
+												"Public"
+											);
+										}}
+										className={
+											"collection-item " + classes.Item
+										}
+									>
+										<p>{notice.title}</p>
+										<span>
+											<p>
+												<i>Published on: </i>
+												{notice.createdOn
+													.substr(0, 10)
+													.split("-")
+													.reverse()
+													.join("-")}
+											</p>
+										</span>
+									</li>
+								</div>
 							);
 						})}
 					</div>
@@ -208,6 +279,7 @@ class PrivNotices extends React.Component {
 					</div>
 				</div>
 				{this.renderNewNoticeButton()}
+				{this.deleteModal()}
 				{this.state.ViewTheNotice ? this.ViewTheNotice() : null}
 				{this.state.showModal ? this.showNoticeCreator() : null}
 			</div>
