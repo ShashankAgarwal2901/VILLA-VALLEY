@@ -18,13 +18,12 @@ class ViewNotice extends React.Component {
 		}
 
 		if (!flag || this.props.notice.seenBy.length === 0) {
-			console.log(flag);
 			axios
 				.post("/api/saw_notice", {
 					whichNotice: this.props.notice._id,
 					userThatSaw: this.props.auth.email,
 				})
-				.then((res) => console.log(res));
+				.then((res) => null);
 			return null;
 		} else {
 			return null;
